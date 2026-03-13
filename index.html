@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>미연시 템플릿</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="game" class="game" aria-label="비주얼 노벨 게임 화면">
+      <!-- 배경 레이어 -->
+      <div id="bg" class="bg" aria-hidden="true"></div>
+
+      <!-- 캐릭터 레이어(좌/우) -->
+      <div class="stage" aria-hidden="true">
+        <div id="ch-left" class="ch ch--left"></div>
+        <div id="ch-right" class="ch ch--right"></div>
+      </div>
+
+      <!-- 상단 UI -->
+      <header class="topbar">
+        <div class="topbar__left">
+          <span class="badge">VN</span>
+          <span id="status" class="status">Ready</span>
+        </div>
+        <div class="topbar__right">
+          <button id="btn-save" class="btn">저장</button>
+          <button id="btn-load" class="btn">불러오기</button>
+          <button id="btn-log" class="btn">로그</button>
+        </div>
+      </header>
+
+      <!-- 하단 대사창 -->
+      <main class="hud">
+        <section
+          class="textbox"
+          id="textbox"
+          role="dialog"
+          aria-label="대사 창"
+        >
+          <div class="textbox__name" id="name"></div>
+          <div class="textbox__text" id="text"></div>
+
+          <div class="textbox__hint">
+            <span>클릭/Enter: 다음</span>
+            <span>Space: 자동</span>
+            <span>S: 스킵</span>
+          </div>
+
+          <div class="controls">
+            <button id="btn-auto" class="btn btn--ghost">자동: OFF</button>
+            <button id="btn-skip" class="btn btn--ghost">스킵: OFF</button>
+            <button id="btn-next" class="btn btn--primary">다음 ▶</button>
+          </div>
+        </section>
+
+        <!-- 선택지 -->
+        <section
+          id="choices"
+          class="choices"
+          aria-label="선택지"
+          hidden
+        ></section>
+      </main>
+
+      <!-- 로그 모달 -->
+      <div id="logModal" class="modal" hidden>
+        <div class="modal__backdrop" data-close="log"></div>
+        <div class="modal__panel" role="dialog" aria-label="대사 로그">
+          <div class="modal__header">
+            <strong>대사 로그</strong>
+            <button class="btn" data-close="log">닫기</button>
+          </div>
+          <div id="logList" class="modal__body"></div>
+        </div>
+      </div>
+
+      <!-- 저장/불러오기 모달 -->
+      <div id="saveModal" class="modal" hidden>
+        <div class="modal__backdrop" data-close="save"></div>
+        <div class="modal__panel" role="dialog" aria-label="저장/불러오기">
+          <div class="modal__header">
+            <strong>저장 / 불러오기</strong>
+            <button class="btn" data-close="save">닫기</button>
+          </div>
+          <div class="modal__body">
+            <p class="muted">슬롯 1개짜리 간단 버전이야.</p>
+            <div class="slot">
+              <div>
+                <div class="slot__title">슬롯 1</div>
+                <div id="slotInfo" class="slot__info muted">비어 있음</div>
+              </div>
+              <div class="slot__actions">
+                <button id="slotSave" class="btn btn--primary">
+                  여기에 저장
+                </button>
+                <button id="slotLoad" class="btn">불러오기</button>
+                <button id="slotClear" class="btn btn--danger">삭제</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script type="module" src="game.js"></script>
+    </div>
+  </body>
+</html>
